@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   shape-rendering="geometricPrecision"
+   text-rendering="geometricPrecision"
+   image-rendering="optimizeQuality"
+   fill-rule="evenodd"
+   clip-rule="evenodd"
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="btn-scroll-to-top.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="0.8444519"
+     inkscape:cx="262.89241"
+     inkscape:cy="240.98471"
+     inkscape:window-width="1462"
+     inkscape:window-height="705"
+     inkscape:window-x="224"
+     inkscape:window-y="224"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <circle
+     style="fill:#000093;fill-opacity:1;stroke:#00b5ff;stroke-width:30;stroke-dasharray:none;stroke-opacity:1"
+     id="path2"
+     cx="256"
+     cy="256"
+     r="226.18221"
+     inkscape:label="back" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer1"
+     inkscape:label="icon"
+     transform="translate(-1.5945746,21.427742)">
+    <path
+       sodipodi:type="star"
+       style="fill:none;fill-opacity:1;stroke:#ffe200;stroke-width:24.2166;stroke-dasharray:none;stroke-opacity:1"
+       id="path3"
+       inkscape:flatsided="false"
+       sodipodi:sides="3"
+       sodipodi:cx="185.52383"
+       sodipodi:cy="220.97424"
+       sodipodi:r1="107.88943"
+       sodipodi:r2="53.944717"
+       sodipodi:arg1="2.6179939"
+       sodipodi:arg2="3.6651914"
+       inkscape:rounded="0.05"
+       inkscape:randomized="0"
+       d="m 92.088848,274.91895 c -2.335874,-4.04585 44.381612,-76.87121 46.717492,-80.91706 2.33587,-4.04586 42.04575,-80.91707 46.7175,-80.91707 4.67175,0 44.38161,76.87121 46.71749,80.91706 2.33587,4.04586 49.05336,76.87123 46.71749,80.91708 -2.33588,4.04585 -88.76324,0 -93.43498,0 -4.67175,0 -91.099117,4.04585 -93.434992,-1e-5 z"
+       inkscape:transform-center-y="-32.300093"
+       transform="matrix(1.2388196,0,0,1.2388196,27.764014,-16.875471)"
+       inkscape:transform-center-x="2.2376888e-06" />
+  </g>
+</svg>

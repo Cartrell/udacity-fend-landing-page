@@ -1,0 +1,144 @@
+a:link {
+  color: #4cf;
+}
+
+a:visited {
+  color: #88f;
+}
+
+body {
+  background: url(../assets/background.webp);
+  color: #fff;
+  margin: 0;
+}
+
+code {
+  background-color: rgba(0, 0, 0, 0.25);
+  font: 0.9em 'Roboto Mono', monospace;
+  margin: 0.25em;
+  padding: 0.2em;
+}
+
+details > summary {
+  border-bottom: #444 2px solid;
+  border-top: #444 2px solid;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.5em;
+  margin: 0 10px;
+}
+
+details > summary:hover {
+  color: #9f9;
+}
+
+footer, header, main {
+  font: 1em Montserrat, sans-serif;
+}
+
+h2 {
+  border-bottom: #444 2px solid;
+  border-top: #444 2px solid;
+}
+
+.active-link-unvisited:link {
+  color: #fc4;
+}
+
+.active-link-visited:visited {
+  color: #8f8;
+}
+
+.active-section {
+  background-color: rgba(0, 255, 0, 0.2);
+}
+
+.code-block {
+  background-color: rgba(0, 0, 0, 0.35);
+  font-size: 0.9em;
+  padding: 0.5em;
+  white-space: pre-wrap;
+}
+
+.header-navbar {
+  background-color: #252;
+}
+
+.header-navbar-list {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header-navbar-list-item {
+  align-items: center;
+  display: inline-block;
+  font-size: 1em;
+  font-variant: small-caps;
+  margin: 0;
+  padding: 0.5em;
+  transition: background-color 0.3s ease;
+}
+
+.header-navbar-list-item:link {
+  text-decoration: none;
+}
+
+.header-navbar-list-item:hover {
+  background-color: rgba(0, 255, 0, 0.25);
+  cursor: pointer;
+}
+
+.header-navbar-list-item-active {
+  background-color: rgba(0, 255, 0, 0.5);
+}
+
+.item-header {
+  font-weight: bold;
+}
+
+.no-code-format {
+  /* unset these, so that they do not overlap parent <pre> block properties */
+  background-color: unset;
+  margin: unset;
+  padding: unset;
+}
+
+.page-header {
+  position: sticky;
+  transition: top 0.3s ease;
+  width: 100%;
+
+  /* ensures nav bar stays in front of dynamica content like the poker demo cards */
+  z-index: 5;
+}
+
+.poker-hand-sample {
+  text-align: center;
+}
+
+.poker-hand-sample-card {
+  transform: scale(0.75);
+  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.5);
+}
+
+.scroll-to-top-button {
+  background: url('../assets/btn-scroll-to-top.svg');
+  bottom: 10px;
+  display: none;
+  right: 10px;
+  position: fixed;
+  border: none;
+  width: 40px;
+  height: 40px;
+}
+
+.scroll-to-top-button:hover {
+  cursor: pointer;
+  filter: brightness(200%) contrast(200%);
+}
+
+.section-container {
+  padding: 0.1em 0.75em;
+}

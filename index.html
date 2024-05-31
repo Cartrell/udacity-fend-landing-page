@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Let's Play Video Poker - Manipulating the DOM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+      rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="js/card-utils.js" type="module"></script>
+    <script src="js/poker-utils.js" type="module"></script>
+    <script src="js/app.js" type="module"></script>
+  </head>
+
+  <body>
+    <header class="page-header">
+      <nav class="header-navbar">
+        <ul class="header-navbar-list"></ul>
+      </nav>
+    </header>
+
+    <main>
+      <header class="main-header">
+        <h1>Video Poker Demo</h1>
+        <p>This fun, video poker demo lets you deal, hold, and draw your way to winning hands.</p>
+      </header>
+
+      <!-- ==================================================================================== -->
+      <!-- how to play section -->
+      <!-- ==================================================================================== -->
+      <details open="true">
+        <summary>How to Play</summary>
+        <section id="how-to-play-section" class="section-container" data-nav-section="How to Play">
+          <article class="article-container">
+            <p><span class="item-header">Objective: </span>The aim is to try to form the best poker
+              hand possible by keeping and discarding cards in your hand.</p>
+            <p><span class="item-header">Deal the Cards: </span>Press the Deal button to receive
+              five random cards from the deck.</p>
+            <p><span class="item-header">Hold cards: </span>Select any cards you wish to hold onto
+              by pressing on them. Any cards not held will be replaced by new cards when you draw
+              them. You can hold any number of cards in your hand, or none at all if you want to
+              discard your entire hand.</p>
+            <p><span class="item-header">Deal new cards: </span>Press the Draw button to draw new
+              cards from the deck. Any cards you chose not to hold will be discarded replaced with
+              new ones.</p>
+            <p><span class="item-header">Check your hand: </span>Your hand will be evaluaded to see
+              if it's a winning poker hand.</p>
+          </article>
+        </section>
+      </details>
+
+      <!-- ==================================================================================== -->
+      <!-- poker hands section -->
+      <!-- ==================================================================================== -->
+      <details open="true">
+        <summary>Poker Hands</summary>
+        <section id="poker-hands-section" class="section-container" data-nav-section="Poker Hands">
+          <article class="article-container">
+            <p>You're trying to match one of the following poker hands. They are listed below in
+              lowest to highest rank.</p>
+
+            <article class="poker-hand-container" data-card-ids="jc-jd-qs-3h-4d"
+              data-caption="Jacks or Better Pair">
+              <p>Two cards of the same rank being Jacks or higher, plus three unmatched cards. For
+                example: <span></span></p>
+            </article>
+
+            <article class="poker-hand-container" data-card-ids="kh-kd-7c-7s-3h"
+              data-caption="Two Pair">
+              <p>Two separate pairs of unmatched ranks. For example: <span></span></p>
+            </article>
+
+            <article class="poker-hand-container">
+              <p>Three cards of the same rank, plus two unmatched cards.
+                For example: <span></span></p>
+            </article>
+
+            <article class="poker-hand-container" data-card-ids="4c-5d-6c-7s-8s"
+              data-caption="Straight">
+              <p>Five consecutive cards in rank, of any suit, not all the same suit. For example:
+                <span></span>.</p>
+            </article>
+
+            <article class="poker-hand-container" data-card-ids="xd-qd-2d-ad-7d"
+              data-caption="Flush">
+              <p>Five cards of any rank, but all the same suit. For example: <span></span></p>
+            </article>
+
+            <article class="poker-hand-container" data-card-ids="qh-5d-qs-qd-5h"
+              data-caption="Full House">
+              <p>A combination of a Three of a Kind and a Pair. For example: <span></span></p>
+            </article>
+
+            <article class="poker-hand-container" data-card-ids="7c-7d-ks-7h-7s"
+              data-caption="Four of a Kind">
+              <p>Four cards of the same rank, plus any other card. For example: <span></span></p>
+            </article>
+
+            <article class="poker-hand-container" data-card-ids="5c-6c-7c-8c-9c"
+              data-caption="Straight Flush">
+              <p>A combination of a Straight and Flush, excluding the Royal Flush. For example: 
+                <span></span></p>
+            </article>
+
+            <article class="poker-hand-container" data-card-ids="ks-as-xs-js-qs"
+              data-caption="Royal Flush">
+              <p>The highest ranking hand! A Royal Flush consists of five consecutive cards of the
+                same suit, ranking from ten to ace. For example: <span></span></p>
+            </article>
+          </article>
+        </section>
+      </details>
+
+      <!-- ==================================================================================== -->
+      <!-- behind the scenes section -->
+      <!-- ==================================================================================== -->
+      <details open="true">
+        <summary>Behing the Scenes</summary>
+        <section id="behind-the-scenes-section" class="section-container"
+          data-nav-section="Behind the Scenes">
+          <article class="article-container">
+            <!-- ============================================================================== -->
+            <!-- poker hands section details -->
+            <!-- ============================================================================== -->
+            <h3>How the Poker Hands Section was Built</h3>
+            <p>Using the concepts about building the page dynamically, I decided to apply this to
+              the "Poker Hands" section.</p>
+            <p>Each poker hand is contained within an <code>article</code> element. This element
+              specifies two <code>data-*</code> attributes: <code>data-card-ids</code>; and
+              <code>data-caption</code>.</p>
+            <p>The <code>data-card-ids</code> attribute specifies which cards will be used when
+              demonstrating the poker hand. It's a collection of card IDs, where each ID specifies which
+              should be created. The format is: <code>cardId1-cardId2-...-cardIdN</code>. Each card ID is
+              made up of a card value immediately by card suit. For example, <code>4c</code> represents
+              the <em>four of clubs</em>.</p>
+            <p>The article element initially contains a paragraph element with a short description, and
+              an empty <code>span</code>. The <code>textContent</code> of the <code>span</code> element
+              gets updated with values the cards specified by the IDs.</p>
+            <p>The code creates an <code>h3</code> header, whose <code>textContent</code> is set to the
+              specified caption. The header is inserter <em>before</em> the paragraph element.</p>
+            <p>The code also creates <code>figure</code> element, which will contain an <code>img</code>
+              for each card in the hand. A <code>figcaption</code> is also created, whose text
+              is set to the caption, same as the header. Finally, the <code>figure</code> is appended
+              (onto the end) inside the article.</p>
+            <p>An example resulting article might look like:
+              <pre class="code-block">
+  <code class="no-code-format">&lt;article class="poker-hand-container" data-card-ids="ks-as-xs-js-qs" data-caption="Royal Flush"&gt;
+    &lt;h3&gt;Royal Flush&lt;/h3&gt;
+    &lt;p&gt;The highest ranking hand! A Royal Flush consists of five consecutive cards of the same 
+    suit, ranking from Ten to Ace: &lt;span&gt;K-A-10-J-Q&lt;/span&gt;&lt;/p&gt;
+    &lt;figure class="poker-hand-sample"&gt;
+      &lt;img src="./assets/cards/card_ks.png" alt="king of spades" class="poker-hand-sample-card"&gt;
+      &lt;img src="./assets/cards/card_as.png" alt="ace of spades" class="poker-hand-sample-card"&gt;
+      &lt;img src="./assets/cards/card_xs.png" alt="ten of spades" class="poker-hand-sample-card"&gt;
+      &lt;img src="./assets/cards/card_js.png" alt="jack of spades" class="poker-hand-sample-card"&gt;
+      &lt;img src="./assets/cards/card_qs.png" alt="queen of spades" class="poker-hand-sample-card"&gt;
+      &lt;figcaption&gt;Royal Flush&lt;/figcaption&gt;
+    &lt;/figure&gt;
+  &lt;/article&gt;</code></pre>
+            </p>
+
+            <!-- ================================================================================ -->
+            <!-- active section details -->
+            <!-- ================================================================================ -->
+            <h3>How Determining the Active Section was Built</h3>
+            <p>This is a modified version of what was proposed in the course content:</p>
+            <pre class="code-block">
+  <code class="no-code-format">function makeActive() {
+    for (const section of sections) {
+      const box = section.getBoundingClientRect();
+      //Find a value that works best, but 150 seems to be a good start.
+      if (box.top <= VALUE && box.bottom >= VALUE) {
+        //apply active state on current section and corresponding Nav link
+      } else {
+        //Remove active state from other section and corresponding Nav link
+      }
+    }
+  }</code></pre>
+            <p>However, I decided to make <code>VALUE</code> dependent on the current window height.
+            I found using a threshold ratio of <em>15%</em> of the window height to work out
+            well.</p>
+            <p>So, instead of using a hard value of <code>150</code>, I used something like:</p>
+            <pre class="code-block">
+  <code class="no-code-format">const VALUE = window.innerHeight * 0.15;</code></pre>
+            <p>Hard-coded values (such as the <code>0.15</code>) and other static, design-based
+              literals are stored in a global object. This avoids littering the code with
+              <a href="https://en.wikipedia.org/wiki/Magic_number_(programming)" alt="Magic Number"
+                target="_blank">magic numbers</a>, and
+              its cousin, <a href="https://en.wikipedia.org/wiki/Magic_string"
+                alt="Magic String" target="_blank">magic strings</a>.</p>
+
+            <!-- ================================================================================ -->
+            <!-- auto-hide navbar -->
+            <!-- ================================================================================ -->
+            <h3>How the Header Nav Bar Auto-Hides</h3>
+            <p>This is one of the suggested pieces of functionality.</p>
+            <p>When the page first loads, the nav bar is initially visible. It will always remain
+              positioned at the top of the view (not scrolling along with the rest of the content).
+              The visibility of the nav bar works as follows:
+              <ul>
+                <li>The nav bar is initially visible.</li>
+                <li>If the page has been scrolled so it's no longer at the top, the nav bar will
+                  auto-hide under the following conditions:</li>
+                  <ul>
+                    <li>The mouse pointer is not over any part of the nav bar.</li>
+                    <li>A set amount of time has passed after the window is no longer
+                      scrolling.</li>
+                  </ul>
+                <li>Each time the page scrolls, the nav bar will reeppar if it was hidden. The
+                  countdown timer to auto-hide the nav bar will restart when scrolling has stopped.
+                </li>
+              </ul></p>
+            <p>First, to get the nav bar to remain positioned at the top of the view, the following
+              CSS is applied to the <code>&lt;header&gt;</code> containing the
+              <code>&lt;nav&gt;</code>:
+                <pre class="code-block">
+  <code class="no-code-format">{
+    position: sticky;
+  }</code></pre></p>
+            <p>Using <code>sticky</code> does just that: it causes an element to "stick" to its
+              current position, even when the document is scrolling. That's the jist of it, but if
+              you're interested, you can learn more about it
+              <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position#sticky"
+                target="_blank" alt="Sticky Posittion Property">here</a>.</p>
+              <a>A caveat is that a sticky element will create its own <em>stacking context</em>.
+                This is a three-dimensional coordinate system that determines the order
+                in which elemnts drawn on the screen, along the z-axis. Those elements higher on
+                the z-axis will appear "in front of" those lower on the z-axis. Most of the time, you
+                don't need to worry about this.</a>
+              <p>(The z-axis moves away and towards the viewer, similar to how the x-axis moves
+                left and right, and the y-axis moves up and down.)</p>
+              <p>Using the sticky property causes the page header to appear
+                <em>behind</em> the cards. Normally, the header would still appear in front of them,
+                because of its own stacking context being created by the sticky positioning.</p>
+              <p>However, I'm also applying a <code>transform</code> to each card. Applying a
+                transform also causes its element to create <em>its own stacking context</em>. This,
+                in turn, causes the cards to appear over the nav bar, which we don't want. We want
+                the nav header to always appear in front of everything else.</p>
+              <p>To fix this, we add another property to the CSS, the <code>z-index</code>.</p>
+              <p>By specifying a z-index higher than <code>0</code>, we can ensure that the page
+                header will appear over the other elements:
+                <pre class="code-block">
+  <code class="no-code-format">{
+    position: sticky;
+    z-index: 5;
+  }</code></pre></p>
+              <p><span class="item-header">As aside: </span>A value of <code>5</code> was used instead
+                to provide some extra room for expansion, should the situation ever arise.</p>
+              <p>I like to think of a stacking context as a building. Each building contains its own
+                set of elements, stacked on top of each other.  You can have one or more buildings on
+                a page, each with its own rendering order. The buildings themselves are also arranged
+                in order, by default, drawn in the order they are created (z-index of auto), unless
+                some other property implicitly alters the order.</p>
+              <p>In interested, learn more about
+                <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/z-index"
+                  alt="z-index CSS property" target="_blank">z-index</a> and
+                <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context"
+                alt="Stacking Context concept" target="_blank">stacking context</a>.</p>
+              <p>As previously stated, the nav bar is initially visible. There are several ways to
+                hide the nav bar; I set its <code>top</code> property to a negative value of its
+                <code>clientHeight</code> property. This "pushes" it off the top of the screen nd out
+                of view. To make it visible again, the top is set to its original value of
+                <code>0</code>.
+              </p>
+              <p>The <code>setTimeout</code> function was used with a specified delay. Once time's
+                up, the nav will hide as stated above.</p>
+              <p>Because this function is always called each time the window scrolls, you don't want
+                many timeouts running. There needs to be a way to <em>cancel</em> the timeout, and
+                there should only be one timer running. The <code>setTimeout</code> function returns
+                a <em>handle</em> to the timer. You can use this handle to cancel the timer by
+                passing it to the <code>clearTimeout</code> function.
+              </p>
+              <p>It also clears the timeout when the mouse is moved over any portion of the nav bar,
+                and restarts it when the mouse moves out of the timer. It listens for the
+                <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerover_event"
+                  alt="pointerover event" target="_blank"><code>pointerover</code></a> and
+                <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerout_event"
+                  alt="pointerout event" target="_blank"><code>pointerout</code></a> events to
+                  accomplish this.</p>
+              <p>See the following JavaScript:
+                <pre class="code-block">
+  <code class="no-code-format">function cancelAutoNavHeaderTimeout() {
+    // this function will clear the timer if it's active
+    if (App.Elements.AutoHideNavHeaderHandle) {
+      clearTimeout(App.Elements.AutoHideNavHeaderHandle);
+      App.Elements.AutoHideNavHeaderHandle = undefined;
+    }
+  }</code></pre>
+
+  <pre class="code-block">
+  <code class="no-code-format">function hideNavHeaderAfter(delayMs) {
+    cancelAutoNavHeaderTimeout();
+
+    // the timer handle is being saved, so the timer can be cleared later if necessary
+    App.Elements.AutoHideNavHeaderHandle = setTimeout(() => {
+      cancelAutoNavHeaderTimeout();
+
+      if (App.Elements.NavHeader) {
+        // this effectively moves the nav bar off the top of the window
+        App.Elements.NavHeader.style.top = `-${App.Elements.NavHeader.clientHeight}px`;
+      }
+    }, delayMs);
+  }</code></pre>
+
+  <pre class="code-block">
+  <code class="no-code-format">function showBavHeader() {
+    cancelAutoNavHeaderTimeout();
+
+    if (App.Elements.NavHeader) {
+      App.Elements.NavHeader.style.top = `0`;
+    }
+  }</code></pre>
+
+  <pre class="code-block">
+  <code class="no-code-format">// the nav header will remain visible as long as the pointer is over it
+  App.Elements.NavHeader.addEventListener('pointerover', () => {
+    showBavHeader();
+  });
+
+  // once the pointer leaves the nav header, it will auto-hide
+  App.Elements.NavHeader.addEventListener('pointerout', () => {
+    if (window.scrollY > 0) {
+      hideNavHeaderAfter(App.AutoHideNavBarDelayMs);
+    }
+  });</code></pre></p>
+
+          </article>
+        </section>
+      </details>
+
+      <!-- ==================================================================================== -->
+      <!-- play the game section -->
+      <!-- ==================================================================================== -->
+      <details open="true">
+        <summary>Play the Game</summary>
+        <section id="play-the-game-section" class="section-container"
+          data-nav-section="Play the Game">
+          <article class="article-container">
+            <p>Talk about
+              <a href="https://www.merriam-webster.com/wordplay/bury-the-lede-versus-lead"
+              alt="Burying the lead">burying the lead!</a> Anyway, you can play the game here. Note
+              that this is a simplified version of the video poker.</p>
+          </article>
+        </section>
+      </details>
+    </main>
+
+    <footer class="main-footer">
+      <p>Created by Cartrell for a Udacity Front-End Development Course.</p>
+      <p>[Optional] Link to your GitHub repository.</p>
+    </footer>
+
+    <button id="scroll-to-top-button" class="scroll-to-top-button"></button>
+  </body>
+</html>
