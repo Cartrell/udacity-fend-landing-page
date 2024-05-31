@@ -32,6 +32,27 @@ details > summary:hover {
   color: #9f9;
 }
 
+figure.game-card {
+  flex: 1 1 auto;
+  margin: 0.5em;
+  text-align: center;
+}
+
+figure.game-card figcaption {
+  font-size: max(0.7em, min(5vw, 0.9em));
+}
+
+figure.game-card img {
+  max-width: 100%;
+}
+
+figure.game-card p {
+  color: yellow;
+  font-weight: bold;
+  margin-bottom: 0.2em;
+  text-shadow: 1px 1px 2px black;
+}
+
 footer, header, main {
   font: 1em Montserrat, sans-serif;
 }
@@ -57,6 +78,52 @@ h1 {
   font-size: 0.9em;
   padding: 0.5em;
   white-space: pre-wrap;
+}
+
+.game-button {
+  align-self: center;
+  background-color: #06f;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 8px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  cursor: pointer;
+  font: 1em Montserrat, sans-serif;
+  font-weight: bold;
+  margin: 10px 0;
+  padding: 10px 20px;
+  text-align: center;
+  text-shadow: 1px 1px 2px black;
+}
+
+/**
+  Note: The active pseudoclass must be defined after the hover class in order to override the same
+  property. Since active is when the button is pressed, it generally comes after hover in the
+  sequences of interactions.
+*/
+.game-button:hover {
+  filter: brightness(125%);
+}
+
+.game-button:active {
+  filter: brightness(80%);
+  box-shadow: 0 4px rgba(0, 0, 0, 0.4);
+  transform: translateY(4px);
+}
+
+.game-cards-container {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.game-poker-hand-label {
+  text-align: center;
 }
 
 .header-navbar {
