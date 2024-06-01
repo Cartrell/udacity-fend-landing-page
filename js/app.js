@@ -1,4 +1,5 @@
-import CardUtils from './card-utils.js';
+import * as CardUtils from './card-utils.js';
+import './poker.js';
 
 /**
  * Global state object.
@@ -311,13 +312,12 @@ function initPokerHand(articleElement) {
     }
 
     // save card value for later processing of text in sibling p element
-    cardValues.push(CardUtils.CardValueToLiteral(card.value).toUpperCase());
+    cardValues.push(CardUtils.CardValueLiterals[card.value]);
 
     // build an img for each card, and add it to the figure
     /** @type {HTMLDivElement} */
     const imageElement = document.createElement('img');
-    imageElement.src = `./assets/cards/card_${card.value}${card.suit}.png`;
-    imageElement.alt = `${CardUtils.CardValueNames[card.value]} of ${CardUtils.CardSuits[card.suit]}`;
+    imageElement.src = CardUtils.CreateImgSrcFromCard(card);
     imageElement.classList.add(App.Classes.PokerHandSampleCard);
     figureElement.appendChild(imageElement);
   });
@@ -325,7 +325,6 @@ function initPokerHand(articleElement) {
   const figCaptionElement = document.createElement('figcaption');
   figCaptionElement.textContent = caption;
   figureElement.appendChild(figCaptionElement);
-
 
   // update the span inside the p element's text with the card values
   /** @type {HTMLSpanElement | null} */

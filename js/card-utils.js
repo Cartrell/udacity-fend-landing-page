@@ -3,7 +3,7 @@ const CardSuits = Object.freeze({
   'd': 'diamonds',
   'h': 'hearts',
   's': 'spades',
-})
+});
 
 const CardValues = Object.freeze({
   '2': 2,
@@ -18,42 +18,49 @@ const CardValues = Object.freeze({
   'j': 11,
   'q': 12,
   'k': 13,
-  'a': 14
+  'a': 14,
 });
 
-const CardValueNames = Object.freeze({
-  '2': 'two',
-  '3': 'three',
-  '4': 'four',
-  '5': 'five',
-  '6': 'six',
-  '7': 'seven',
-  '8': 'eight',
-  '9': 'nine',
-  'x': 'ten',
-  'j': 'jack',
-  'q': 'queen',
-  'k': 'king',
-  'a': 'ace',
+const CardValueLiterals = Object.freeze({
+  '2': '2',
+  '3': '3',
+  '4': '4',
+  '5': '5',
+  '6': '6',
+  '7': '7',
+  '8': '8',
+  '9': '9',
+  'x': '10',
+  'j': 'J',
+  'q': 'Q',
+  'k': 'K',
+  'a': 'A',
 });
+
+/**
+ * @typedef {typeof CardSuits[keyof typeof CardSuits]} CardSuit
+ * @typedef {typeof CardValues[keyof typeof CardValues]} CardValue
+ */
+
+const CARD_BACK_IMG_SRC = './assets/cards/card-back.png';
 
 // ================================================================================================
 class Card {
   // ==============================================================================================
   // properties
   // ==============================================================================================
-  /** @type {Readonly<keyof CardSuits>} */
+  /** @type {Readonly<CardSuit>} */
   _suit;
 
-  /** @type {Readonly<keyof CardValues>} */
+  /** @type {Readonly<CardValue>} */
   _value;
 
   // ==============================================================================================
   // public
   // ==============================================================================================
   /**
-   * @param {keyof CardValues} value
-   * @param {keyof CardSuits} suit
+   * @param {CardValue} value
+   * @param {CardSuit} suit
    */
   constructor(value, suit) {
     this._suit = suit;
@@ -84,20 +91,18 @@ function CreateCardFromId(id) {
 
 // ------------------------------------------------------------------------------------------------
 /**
- * 
- * @param {keyof CardValues} value 
+ * @param {Card} card
  */
-function CardValueToLiteral(value) {
-  return (value === 'x' ? '10' : value);
+function CreateImgSrcFromCard(card) {
+  return (`./assets/cards/card_${card.value}${card.suit}.png`);
 }
 
-const CardUtils = {
+export {
   Card,
+  CARD_BACK_IMG_SRC,
   CardSuits,
   CardValues,
-  CardValueNames,
-  CardValueToLiteral,
+  CardValueLiterals,
   CreateCardFromId,
+  CreateImgSrcFromCard,
 };
-
-export default CardUtils;
