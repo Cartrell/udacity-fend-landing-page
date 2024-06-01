@@ -39,18 +39,21 @@ figure.game-card {
 }
 
 figure.game-card figcaption {
-  font-size: max(0.7em, min(5vw, 0.9em));
-}
-
-figure.game-card img {
-  max-width: 100%;
-}
-
-figure.game-card p {
   color: yellow;
   font-weight: bold;
   margin-bottom: 0.2em;
   text-shadow: 1px 1px 2px black;
+}
+
+figure.game-card img {
+  max-width: 100%;
+  cursor: pointer;
+  pointer-events: none;
+  position: relative;
+}
+
+figure.game-card img:hover {
+  filter: brightness(150%);
 }
 
 footer, header, main {
@@ -80,6 +83,18 @@ h1 {
   white-space: pre-wrap;
 }
 
+.deal-card-anim {
+  animation:
+    0.5s cubic-bezier(0, 0, 0.2, 1) deal-keyframes,
+    0.5s linear 0.5s flip1-keyframes,
+    0.5s linear 1.0s flip2-keyframes;
+  animation-fill-mode: forwards;
+}
+
+.discard-card-anim {
+  animation: 0.5s ease-in forwards discard-keyframes;
+}
+
 .game-button {
   align-self: center;
   background-color: #06f;
@@ -96,6 +111,11 @@ h1 {
   text-shadow: 1px 1px 2px black;
 }
 
+.game-button:disabled {
+  background-color: #777;
+  color: #aaa;
+}
+
 /**
   Note: The active pseudoclass must be defined after the hover class in order to override the same
   property. Since active is when the button is pressed, it generally comes after hover in the
@@ -109,6 +129,10 @@ h1 {
   filter: brightness(80%);
   box-shadow: 0 4px rgba(0, 0, 0, 0.4);
   transform: translateY(4px);
+}
+
+.game-card {
+  perspective: 1000px;
 }
 
 .game-cards-container {
@@ -207,4 +231,48 @@ h1 {
 
 .section-container {
   padding: 0.1em 0.75em;
+}
+
+@keyframes deal-keyframes {
+  from {
+    opacity: 0;
+    top: -50px;
+  }
+
+  to {
+    opacity: 1.0;
+    top: 0;
+  }
+}
+
+@keyframes discard-keyframes {
+  from {
+    opacity: 1.0;
+    top: 0;
+  }
+
+  to {
+    opacity: 0;
+    top: -50px;
+  }
+}
+
+@keyframes flip1-keyframes {
+  from {
+    transform: rotateY(0deg);
+  }
+  
+  to {
+    transform: rotateY(90deg);
+  }
+}
+
+@keyframes flip2-keyframes {
+  from {
+    transform: rotateY(-90deg);
+  }
+  
+  to {
+    transform: rotateY(0deg);
+  }
 }
