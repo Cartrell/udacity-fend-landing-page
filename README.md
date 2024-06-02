@@ -1,29 +1,35 @@
-# Udacity Landing Page Project
+# Udacity Landing Page Project - Featuring Video Poker Demo
 
-![](./starter/src/dev-assets/general-store.webp)
+![](./assets/readme-banner.webp)
 
-[Demo available here](https://gameplaycoder.com/projects/udacity/general-store/)
+[Live project available here](https://gameplaycoder.com/projects/udacity/general-store/)
 
-## Udacity's Standout Functionality
-* ✅ Hide fixed navigation bar while not scrolling (it should still be present on page load).
-* ✅ Update/change the design/content.
-* ✅ Add a scroll-to-top button on the page that's only visible when the user scrolls below the [fold](https://en.wikipedia.org/wiki/Above_the_fold#In_web_design) of the page.
-* Make sections collapsible.
-
-## My own Standout Functionality
-* Added a simple video poker game to the bottom of the page (I am a game programmer, after all)
-* Sample poker hands are built dynamically, depending on the cards specified in their `data-card-ids` data attribute.
-
-### Asset Attributions
-* N/A
-
-## Functionality
-
+## About this Project
 Udacity: You will be building a multi-section landing page. Often times, we don’t know how much content will be added to a page through a CMS or an API. To circumvent this problem, we can dynamically add the content to the page. We will be demonstrating this with the navigation menu. Additionally, dynamically building the navigation is a great precursor to understanding the virtual DOM which you will experience when you begin working with JavaScript frameworks.
 
-### Getting Started
+### Udacity's Standout Functionality
+✅ Hide fixed navigation bar while not scrolling (it should still be present on page load).
 
-#### Installing Node
+✅ Update/change the design/content.
+
+✅ Add a scroll-to-top button on the page that's only visible when the user scrolls below the [fold](https://en.wikipedia.org/wiki/Above_the_fold#In_web_design) of the page.
+
+✅ Make sections collapsible.
+
+### My own Standout Functionality
+✅ Added a simple video poker game to the bottom of the page (I am a game programmer, after all)
+
+✅ Sample poker hands are built dynamically, depending on the cards specified in their `data-card-ids` data attribute.
+
+## Getting Started
+If you're already familiar with node and npm, see the [Quick Start](#quick-start) section. Otherwise, see the [Installing Node](#installing-node) section.
+
+### Quick Start
+1. Download or clone this repository.
+1. In the project's root folder, run `npm install`.
+1. To run the app, run `npm run start`. The app should open in your default browser.
+
+### Installing Node
 
 You must have node.js installed on your system.
 
@@ -35,7 +41,7 @@ node -v
 
 If Node.js is installed, a version will be returned--something like `v16.14.2`.
 
-If Node.js is not installed, you can install it from their website: <a href="https://nodejs.org/en/" target="_blank">Nodejs.org</a>. Make sure to select the **LTS**, "Recommended for most users," version.
+If Node.js is not installed, you can install it from their website: [Nodejs.org](https://nodejs.org/en/). Make sure to select the **LTS**, "Recommended for most users," version.
 
 #### Accessing the Working Directory
 
@@ -103,12 +109,8 @@ Running the linter from within VS Code has the extra benefit of allowing you to 
 
 **Note**: These instruction were taken from version `1.89.1` of VS Code. They may differ if you're using a different version.
 
-### Built With
+## Built With
 
 - Node.js (https://nodejs.com) - A JavaScript runtime for creating JavaScript servers
 - Live Server (https://www.npmjs.com/package/live-server) - Live reloading for your workspace
 - ESLint (https://eslint.org/) - A code analysis tool for identifying problematic patterns found in JavaScript code.
-
-### License
-
-[License](LICENSE.txt)
