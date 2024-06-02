@@ -1,4 +1,4 @@
-// import * as CardUtils from './card-utils.js';
+import * as CardUtils from './card-utils.js';
 
 // ================================================================================================
 // locals
@@ -255,6 +255,7 @@ function Evaluate(cards) {
   return (null);
 }
 
+/*
 const PokerUtils = {
   Evaluate,
   NUM_CARDS_IN_HAND,
@@ -263,4 +264,11 @@ const PokerUtils = {
 
 modules.exports = {
   PokerUtils,
+};
+*/
+
+export {
+  Evaluate,
+  NUM_CARDS_IN_HAND,
+  PokerHandNames,
 };

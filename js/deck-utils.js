@@ -1,4 +1,4 @@
-// import * as CardUtils from './card-utils.js';
+import * as CardUtils from './card-utils.js';
 
 // ================================================================================================
 class Deck {
@@ -49,7 +49,9 @@ class Deck {
   }
 }
 
-// export default Deck;
+/*
 modules.exports = {
   Deck,
 };
+*/
+export default Deck;

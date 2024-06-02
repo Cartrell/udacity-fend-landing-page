@@ -1,8 +1,6 @@
-/*
 import * as CardUtils from './card-utils.js';
 import * as PokerUtils from './poker-utils.js';
 import Deck from './deck-utils.js';
-*/
 
 // ================================================================================================
 // typedefs
@@ -326,8 +324,10 @@ function setCardHeld(cardUi, isHeld) {
  */
 function setPokerHandLabel(handType) {
   if (Poker.Elements.pokerHandLabel) {
-    Poker.Elements.pokerHandLabel.textContent = PokerUtils.PokerHandNames[handType]
-      ?? '------------';
+    Poker.Elements.pokerHandLabel.textContent = handType !== null
+      && handType in PokerUtils.PokerHandNames
+        ? PokerUtils.PokerHandNames[handType]
+        : '------------';
   }
 }
 
@@ -336,6 +336,9 @@ function setPokerHandLabel(handType) {
 // ================================================================================================
 Poker.Elements.dealButton?.addEventListener('click', onDealButtonClick);
 
+/*
 modules.export = {
   Poker,
 };
+*/
+export default Poker;

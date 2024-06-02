@@ -100,6 +100,7 @@ function CreateImgSrcFromCard(card) {
   return (`./assets/cards/card_${GetValueKeyFromValue(card.value)}${card.suit}.png`);
 }
 
+/*
 const CardUtils = {
   Card,
   CARD_BACK_IMG_SRC,
@@ -114,4 +115,16 @@ const CardUtils = {
 
 modules.export = {
   CardUtils,
+};
+*/
+export {
+  Card,
+  CARD_BACK_IMG_SRC,
+  CardSuits,
+  CardValues,
+  CardValuesMap,
+  CreateCardFromId,
+  CreateImgSrcFromCard,
+  GetValueFromValueKey,
+  GetValueKeyFromValue,
 };

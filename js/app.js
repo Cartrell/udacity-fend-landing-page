@@ -1,7 +1,5 @@
-/*
 import * as CardUtils from './card-utils.js';
 import './poker.js';
-*/
 
 /**
  * Global state object.
@@ -79,8 +77,7 @@ function cancelAutoNavHeaderTimeout() {
  */
 function isScrolledToBottom() {
   // scrollTop is a fallback in case scrollY isn'o't supported (for example, on *cough*Safari)
-  const scrollPosition = window.scrollY ?? document.documentElement.scrollTop;
-
+  const scrollPosition = Math.round(window.scrollY ?? document.documentElement.scrollTop);
   const windowHeight = window.innerHeight;
   const documentHeight = document.documentElement.scrollHeight;
   return (scrollPosition + windowHeight) >= documentHeight;
