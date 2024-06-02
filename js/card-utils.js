@@ -1,45 +1,24 @@
-const CardSuits = Object.freeze({
-  'c': 'clubs',
-  'd': 'diamonds',
-  'h': 'hearts',
-  's': 'spades',
-});
-
-const CardValues = Object.freeze({
-  '2': 2,
-  '3': 3,
-  '4': 4,
-  '5': 5,
-  '6': 6,
-  '7': 7,
-  '8': 8,
-  '9': 9,
-  'x': 10,
-  'j': 11,
-  'q': 12,
-  'k': 13,
-  'a': 14,
-});
-
-const CardValueLiterals = Object.freeze({
-  '2': '2',
-  '3': '3',
-  '4': '4',
-  '5': '5',
-  '6': '6',
-  '7': '7',
-  '8': '8',
-  '9': '9',
-  'x': '10',
-  'j': 'J',
-  'q': 'Q',
-  'k': 'K',
-  'a': 'A',
+const CardSuits = Object.freeze(['c', 'd', 'h', 's']);
+const CardValues = Object.freeze([2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]);
+const CardValuesMap = Object.freeze({
+  '2': Object.freeze({name: '2', value: CardValues[0]}),
+  '3': Object.freeze({name: '3', value: CardValues[1]}),
+  '4': Object.freeze({name: '4', value: CardValues[2]}),
+  '5': Object.freeze({name: '5', value: CardValues[3]}),
+  '6': Object.freeze({name: '6', value: CardValues[4]}),
+  '7': Object.freeze({name: '7', value: CardValues[5]}),
+  '8': Object.freeze({name: '8', value: CardValues[6]}),
+  '9': Object.freeze({name: '9', value: CardValues[7]}),
+  'x': Object.freeze({name: '10', value: CardValues[8]}),
+  'j': Object.freeze({name: 'J', value: CardValues[9]}),
+  'q': Object.freeze({name: 'Q', value: CardValues[10]}),
+  'k': Object.freeze({name: 'K', value: CardValues[11]}),
+  'a': Object.freeze({name: 'A', value: CardValues[12]}),
 });
 
 /**
- * @typedef {typeof CardSuits[keyof typeof CardSuits]} CardSuit
- * @typedef {typeof CardValues[keyof typeof CardValues]} CardValue
+ * @typedef {'c' | 'd' | 'h' | 's'} CardSuit
+ * @typedef {2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14} CardValue
  */
 
 const CARD_BACK_IMG_SRC = './assets/cards/card-back.png';
@@ -81,12 +60,36 @@ class Card {
 // ------------------------------------------------------------------------------------------------
 /**
  * Creates a new `Card` object, given a card id.
- * @param {`${keyof CardValues}${keyof CardSuits}`} id 
+ * @param {`${keyof CardValuesMap}${CardSuit}`} id 
  * @returns {Card | undefined} The new `Card`, or `undefined` if the id is invalid.
  */
 function CreateCardFromId(id) {
-  const [value, suit] = [id?.charAt(0), id?.charAt(1)];
-  return (value in CardValues && suit in CardSuits ? new Card(value, suit) : undefined);
+  const [valueKey, suit] = [id?.charAt(0), id?.charAt(1)];
+  return (valueKey in CardValuesMap && CardSuits.includes(suit)
+    ? new Card(CardValuesMap[valueKey].value, suit)
+    : undefined);
+}
+
+// ------------------------------------------------------------------------------------------------
+/**
+ * @param {keyof CardValuesMap} cardValueKey
+ */
+function GetValueFromValueKey(cardValueKey) {
+  const valueData = CardValuesMap[cardValueKey];
+  return (valueData ? valueData.value : undefined);
+}
+
+// ------------------------------------------------------------------------------------------------
+/**
+ * @param {CardValue} cardValue
+ * @returns {CardValue | undefined}
+ */
+function GetValueKeyFromValue(cardValue) {
+  const valueKeys = Object.keys(CardValuesMap);
+  return (valueKeys.find((valueKey) => {
+    const valueData = CardValuesMap[valueKey];
+    return (valueData.value === cardValue);
+  }));
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -94,15 +97,21 @@ function CreateCardFromId(id) {
  * @param {Card} card
  */
 function CreateImgSrcFromCard(card) {
-  return (`./assets/cards/card_${card.value}${card.suit}.png`);
+  return (`./assets/cards/card_${GetValueKeyFromValue(card.value)}${card.suit}.png`);
 }
 
-export {
+const CardUtils = {
   Card,
   CARD_BACK_IMG_SRC,
   CardSuits,
   CardValues,
-  CardValueLiterals,
+  CardValuesMap,
   CreateCardFromId,
   CreateImgSrcFromCard,
+  GetValueFromValueKey,
+  GetValueKeyFromValue,
+};
+
+modules.export = {
+  CardUtils,
 };

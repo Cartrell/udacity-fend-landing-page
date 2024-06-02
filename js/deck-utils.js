@@ -1,4 +1,4 @@
-import * as CardUtils from './card-utils.js';
+// import * as CardUtils from './card-utils.js';
 
 // ================================================================================================
 class Deck {
@@ -18,8 +18,8 @@ class Deck {
     this._cards = [];
     this._index = 0;
 
-    Object.keys(CardUtils.CardValues).forEach((value) => {
-      Object.keys(CardUtils.CardSuits).forEach((suit) => {
+    CardUtils.CardValues.forEach((value) => {
+      CardUtils.CardSuits.forEach((suit) => {
         this._cards.push(new CardUtils.Card(value, suit));
       });
     });
@@ -49,4 +49,7 @@ class Deck {
   }
 }
 
-export default Deck;
+// export default Deck;
+modules.exports = {
+  Deck,
+};

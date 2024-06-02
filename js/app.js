@@ -1,5 +1,7 @@
+/*
 import * as CardUtils from './card-utils.js';
 import './poker.js';
+*/
 
 /**
  * Global state object.
@@ -234,6 +236,7 @@ function _initNavBarHeader() {
 function _initNavBarItems() {
   /** @type {HTMLUListElement | null} */
   const unorderedListElement = document.querySelector(`.${App.Classes.HeaderNavbarList}`);
+
   if (!unorderedListElement) {
     return;
   }
@@ -312,7 +315,7 @@ function initPokerHand(articleElement) {
     }
 
     // save card value for later processing of text in sibling p element
-    cardValues.push(CardUtils.CardValueLiterals[card.value]);
+    cardValues.push(CardUtils.CardValuesMap[card.value]);
 
     // build an img for each card, and add it to the figure
     /** @type {HTMLDivElement} */

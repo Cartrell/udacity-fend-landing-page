@@ -1,5 +1,8 @@
+/*
 import * as CardUtils from './card-utils.js';
+import * as PokerUtils from './poker-utils.js';
 import Deck from './deck-utils.js';
+*/
 
 // ================================================================================================
 // typedefs
@@ -43,6 +46,9 @@ const Poker = Object.freeze({
 
     /** @type {Deck} */
     deck: undefined,
+
+    /** @type {HTMLParagraphElement | null} */
+    pokerHandLabel: document.querySelector('.game-poker-hand-label'),
   },
 
   States: {
@@ -104,7 +110,7 @@ function discardNonHeldCards() {
       }, index * Poker.CardDealRateMs);
     });
   } else {
-    evaluateHand();
+    presentGameEnd();
   }
 }
 
@@ -135,7 +141,7 @@ function evaluateHand() {
     .map((cardUi) => cardUi.card)
     .filter((card) => !!card);
 
-  const result = PokerUtils.Evaluate(cards);
+  return (PokerUtils.Evaluate(cards));
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -199,6 +205,7 @@ function onDealButtonClick() {
   enableDealButton(false);
 
   if (Poker.States.Step === 0) {
+    setPokerHandLabel(null);
     initDeck();
     initCards();
     dealCards();
@@ -226,8 +233,7 @@ function onDiscardCardsComplete() {
 
 // ------------------------------------------------------------------------------------------------
 function onDrawReplacementCardsComplete() {
-  // cardUi.image.classList.remove('discard-card-anim');
-  evaluateHand();
+  presentGameEnd();
 }
 
 // ------------------------------------------------------------------------------------------------
@@ -266,6 +272,19 @@ function onElementAnimationEnd(event) {
 }
 
 // ------------------------------------------------------------------------------------------------
+function presentGameEnd() {
+  Poker.States.Step = 0;
+  enableDealButton(true);
+
+  const results = evaluateHand();
+  if (!results) {
+    return;
+  }
+
+  setPokerHandLabel(results.handType);
+}
+
+// ------------------------------------------------------------------------------------------------
 /**
  * @param {CardUi} cardUi
  * @param {CardUtils.Card} card
@@ -301,7 +320,22 @@ function setCardHeld(cardUi, isHeld) {
   cardUi.holdCaption.style.visibility = isHeld ? 'visible' : 'hidden';
 }
 
+// ------------------------------------------------------------------------------------------------
+/**
+ * @param {PokerUtils.PokerHandType | null} handType
+ */
+function setPokerHandLabel(handType) {
+  if (Poker.Elements.pokerHandLabel) {
+    Poker.Elements.pokerHandLabel.textContent = PokerUtils.PokerHandNames[handType]
+      ?? '------------';
+  }
+}
+
 // ================================================================================================
 // main execution
 // ================================================================================================
 Poker.Elements.dealButton?.addEventListener('click', onDealButtonClick);
+
+modules.export = {
+  Poker,
+};

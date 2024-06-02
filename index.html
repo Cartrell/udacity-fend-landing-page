@@ -10,9 +10,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
       rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
-    <script src="js/card-utils.js" type="module"></script>
-    <script src="js/poker-utils.js" type="module"></script>
-    <script src="js/app.js" type="module"></script>
+    <script src="js/card-utils.js" defer></script>
+    <script src="js/deck-utils.js" defer></script>
+    <script src="js/poker-utils.js" defer></script>
+    <script src="js/app.js" defer></script>
+    <script src="js/poker.js" defer></script>
   </head>
 
   <body>
@@ -345,7 +347,7 @@
               alt="Burying the lead">burying the lead!</a> Anyway, you can play the game here. Note
               that this is a simplified version of the video poker.</p>
             <div class="game-container">
-              <h3 class="game-poker-hand-label">POKER HAND NAME</h3>
+              <p class="game-poker-hand-label">------------</p>
               <div class="game-cards-container">
                 <figure id="game-card-0" class="game-card">
                   <figcaption>HOLD</figcaption>
